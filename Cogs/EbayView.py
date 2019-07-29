@@ -5,7 +5,6 @@ import random
 from urllib.parse import urlparse
 import time
 import requests
-import json
 
 class EbayView(commands.Cog, name = "EbayView"):
     def __init__(self, bot):
@@ -195,7 +194,6 @@ class EbayView(commands.Cog, name = "EbayView"):
                     elif self.bot.rate_limit_type == 'Request':
                         self.bot.view_data[str(ctx.author.id)]['num_views'] = self.bot.view_data[str(ctx.author.id)]['num_views'] + 1
 
-                print(json.dumps(self.bot.view_data, indent = 4))
                 start = time.time()
                 for i in range(num_views):
                     requests.get(link)
