@@ -6,7 +6,7 @@ import os
 import sys
 import random
 
-with open("./Config.yml", 'r') as file:
+with open("./MyConfig.yml", 'r') as file:
     config = yaml.load(file, Loader = yaml.Loader)
 
 bot = commands.AutoShardedBot(command_prefix=config['Prefix'], description="Heroicos_HM's Custom Bot", case_insensitive = True)
@@ -30,10 +30,12 @@ bot.game_to_show = config['Options']['Game Status']['Game']
 
 # Ebay View Settings
 bot.view_limit = config['Ebay Settings']['View Limit']
-bot.rate_limit_type= config['Ebay Settings']['Rate Limit']['Rate Limit Type']
-if rate_limit_type.lower() == 'request':
+bot.rate_limit_type = config['Ebay Settings']['Rate Limit']['Rate Limit Type']
+if bot.rate_limit_type.lower() == 'request':
+    bot.rate_limit_type = 'Request'
     bot.rate_limit = config['Ebay Settings']['Rate Limit']['Hourly Request Limit']
 else:
+    bot.rate_limit_type = 'View'
     bot.rate_limit = config['Ebay Settings']['Rate Limit']['Hourly View Limit']
 
 extensions = [
@@ -60,7 +62,7 @@ async def on_ready():
     else:
         embed = discord.Embed(
             title = bot.online_message.format(username = bot.user.name),
-            description = 'Rate Limit Type: {limit_type}\nLimit: {limit}\nView Limit per Command: {view_limit}'.format(limit_type = bot.rate_limit_type, limit = bot.rate_limit, view_limit = bot.view_limit),
+            description = '*Rate Limit Type:* {limit_type}\n*Limit:* {limit}\n*View Limit per Command:* {view_limit}'.format(limit_type = bot.rate_limit_type, limit = bot.rate_limit, view_limit = bot.view_limit),
             color = random.choice(bot.embed_colors)
         )
     embed.set_footer(
@@ -97,6 +99,11 @@ async def dfs_help(ctx):
     embed.add_field(
         name = bot.prefix + "view <Link> <Number>",
         value = "Adds views on an Ebay link. Maximum of " + str(bot.view_limit) + ".",
+        inline = False
+    )
+    embed.add_field(
+        name = bot.prefix + 'ratelimit',
+        value = 'Shows information on rate limits for commands.',
         inline = False
     )
     embed.add_field(
