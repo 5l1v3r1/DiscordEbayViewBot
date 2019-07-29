@@ -7,7 +7,7 @@
 
 # Notes
 1. This bot is very simple, is may be patched with a slightly safer system in the future.
-  - Users right now are able to spam the bot, this would be rate limited.
+  - ~~Users right now are able to spam the bot, this would be rate limited.~~ Rate Limit Added
 2. The included python installer is built for Windows, it will not work on any other operating systems.
 3. Also, the `.bat` files that I told you to run will only work on Windows. For running on other systems, you can either reach out to me personally or figure it out yourself.
 
