@@ -30,6 +30,11 @@ bot.game_to_show = config['Options']['Game Status']['Game']
 
 # Ebay View Settings
 bot.view_limit = config['Ebay Settings']['View Limit']
+bot.rate_limit_type= config['Ebay Settings']['Rate Limit']['Rate Limit Type']
+if rate_limit_type.lower() == 'request':
+    bot.rate_limit = config['Ebay Settings']['Rate Limit']['Hourly Request Limit']
+else:
+    bot.rate_limit = config['Ebay Settings']['Rate Limit']['Hourly View Limit']
 
 extensions = [
     'Cogs.General',
@@ -48,12 +53,14 @@ async def on_ready():
     if bot.use_timestamp:
         embed = discord.Embed(
             title = bot.online_message.format(username = bot.user.name),
+            description = 'Rate Limit Type: {limit_type}\nLimit: {limit}\nView Limit per Command: {view_limit}'.format(limit_type = bot.rate_limit_type, limit = bot.rate_limit, view_limit = bot.view_limit),
             color = random.choice(bot.embed_colors),
             timestamp = datetime.datetime.now(datetime.timezone.utc)
         )
     else:
         embed = discord.Embed(
             title = bot.online_message.format(username = bot.user.name),
+            description = 'Rate Limit Type: {limit_type}\nLimit: {limit}\nView Limit per Command: {view_limit}'.format(limit_type = bot.rate_limit_type, limit = bot.rate_limit, view_limit = bot.view_limit),
             color = random.choice(bot.embed_colors)
         )
     embed.set_footer(

@@ -13,7 +13,7 @@
 
 # Potential Updates:
 - [ ] Adding support for proxies (configurable in Config.yml)
-- [ ] Adding rate limiting (Person can only run one set at a time, then has a cooldown before they can run more views.
+- [x] Adding rate limiting (Person can only run one set at a time, then has a cooldown before they can run more views.)
 
 # Further Support
 For more setup or general support, reach out to `Heroicos_HM#0310` on Discord or join my server with the link below and open a support ticket.

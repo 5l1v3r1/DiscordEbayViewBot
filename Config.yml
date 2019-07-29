@@ -58,3 +58,19 @@ Options:
 Ebay Settings:
   # The number of views a user can add in one go.
   View Limit: 25
+
+  # Settings regarding view rate limiting.
+  Rate Limit:
+    # This sets the the type of rate limit.
+    # NOTE: Options are 'Request' and 'View'. Default is 'View'
+    # 'View' Type limits the number of views a person can add per hour, not the number of commands.
+    # 'Request' Type limits the number of times a user cna use the command per hour.
+    Rate Limit Type: 'View'
+
+    # Set the number of views a user can add per hour.
+    # Set to '0' for no limit.
+    Hourly View Limit: 0
+
+    # The number of times per hour a user can use the add views command.
+    # Set to '0' for no limit.
+    Hourly Request Limit: 0
