@@ -6,7 +6,7 @@ import os
 import sys
 import random
 
-with open("./MyConfig.yml", 'r') as file:
+with open("./Config.yml", 'r') as file:
     config = yaml.load(file, Loader = yaml.Loader)
 
 bot = commands.AutoShardedBot(command_prefix=config['Prefix'], description="Heroicos_HM's Custom Bot", case_insensitive = True)
